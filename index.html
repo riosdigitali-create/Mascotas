@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F4F0EC">
+
+<title>LAZO — Diseñado para quienes aman a sus mascotas</title>
+<meta name="description" content="LAZO diseña collares, correas, camas y accesorios de alta gama para perros y gatos. Materiales nobles, diseño contemporáneo y una obsesión por el detalle.">
+<meta name="keywords" content="collares premium para perros, correas de diseño, camas para mascotas, accesorios gatos, tienda mascotas lujo">
+<link rel="canonical" href="https://lazo.example/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LAZO">
+<meta property="og:title" content="LAZO — Diseñado para quienes aman a sus mascotas">
+<meta property="og:description" content="Objetos de diseño para la vida compartida con perros y gatos. Materiales nobles, formas honestas.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&amp;fit=crop&amp;w=1200&amp;q=80">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="dns-prefetch" href="https://images.unsplash.com">
+
+<!-- Tipografías libres para uso comercial.
+     Switzer (Indian Type Foundry) ocupa el lugar de Modern Era (Colophon Foundry).
+     Archivo, en su eje expandido, ocupa el lugar de Obviously (OH no Type Co).
+     Ninguna de las dos originales puede incrustarse sin comprar su licencia. -->
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&amp;display=swap" rel="stylesheet">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23121212'/><text y='70' x='50' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='56' fill='%23F4F0EC'>L</text></svg>">
+
+<!-- Marca que el JS está vivo. Las animaciones de entrada esconden el contenido
+     hasta revelarlo; si esto no se ejecuta, el CSS lo muestra todo sin más.
+     Nunca debe verse una página en blanco por culpa de una animación. -->
+<script>document.documentElement.classList.add('js');</script>
+
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      /* Paleta extraída del CSS en producción de wildone.com.
+         Los valores hex son datos, no material protegible. */
+      colors: {
+        bone:   '#F4F0EC',  // crema cálido — fondo de página
+        sand:   '#EDE8E2',  // crema medio — tarjetas
+        clay:   '#DFC5A9',  // tostado
+        stone:  '#737373',  // gris de texto secundario
+        slate:  '#232323',  // gris carbón
+        ink:    '#121212',  // casi negro — texto y fondos oscuros
+        moss:   '#CAC5FF',  // periwinkle (su acento pastel característico)
+        blush:  '#F9C0DF',  // rosa
+        peri:   '#E7E5FF',  // periwinkle claro
+        petal:  '#FFF1FA',  // rosa muy claro
+        alert:  '#EF0C10',  // rojo de aviso
+      },
+      fontFamily: {
+        sans:    ['Switzer', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['Archivo', 'Switzer', 'system-ui', 'sans-serif'],
+      },
+      letterSpacing: { tightest: '-0.05em' },
+      borderRadius: { '4xl': '2rem', '5xl': '2.75rem' },
+      boxShadow: {
+        soft:  '0 2px 8px -2px rgb(28 26 23 / 0.06), 0 12px 32px -12px rgb(28 26 23 / 0.10)',
+        lift:  '0 8px 24px -6px rgb(28 26 23 / 0.10), 0 24px 64px -20px rgb(28 26 23 / 0.18)',
+      },
+      transitionTimingFunction: {
+        silk: 'cubic-bezier(0.22, 1, 0.36, 1)',
+      },
+    }
+  }
+}
+</script>
+
+<style>
+  :root { --silk: cubic-bezier(0.22, 1, 0.36, 1); }
+
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  /* clip (no hidden): 'hidden' crearía un contenedor de scroll y rompería
+     el position:sticky de la cabecera. */
+  body { background: #F4F0EC; color: #121212; overflow-x: clip; }
+  body.is-locked { overflow: hidden; }
+
+  /* Archivo en su eje expandido es la aproximación libre más cercana
+     al display ancho y rotundo de Obviously. */
+  .font-display { font-stretch: 112%; letter-spacing: -0.022em; }
+
+  ::selection { background: #121212; color: #F4F0EC; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 9px; }
+  ::-webkit-scrollbar-track { background: #F4F0EC; }
+  ::-webkit-scrollbar-thumb { background: #DFC5A9; border-radius: 99px; }
+  ::-webkit-scrollbar-thumb:hover { background: #737373; }
+
+  /* ---------- Reveal on scroll ----------
+     Todo prefijado con .js: sin JavaScript el contenido simplemente se ve.
+     Una animación de entrada no puede ser requisito para leer la página. */
+  .js [data-reveal] {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 1s var(--silk), transform 1s var(--silk);
+    transition-delay: var(--d, 0ms);
+    will-change: opacity, transform;
+  }
+  .js [data-reveal].in { opacity: 1; transform: none; }
+
+  .js [data-reveal="mask"] { opacity: 1; transform: none; }
+  .js [data-reveal="mask"] > * {
+    display: inline-block;
+    transform: translateY(105%);
+    transition: transform 1.1s var(--silk);
+    transition-delay: var(--d, 0ms);
+  }
+  .js [data-reveal="mask"].in > * { transform: none; }
+  .mask-line { overflow: hidden; display: block; padding-bottom: .08em; }
+
+  .js [data-reveal="zoom"] { opacity: 1; transform: none; }
+  .js [data-reveal="zoom"] img { transform: scale(1.22); transition: transform 1.6s var(--silk), filter 1.6s var(--silk); filter: blur(6px); }
+  .js [data-reveal="zoom"].in img { transform: scale(1); filter: none; }
+
+  /* ---------- Barra de anuncio + Header ----------
+     La barra vive en el flujo normal, así que se va sola al hacer scroll.
+     El header es sticky con margen inferior negativo: no ocupa espacio,
+     se superpone al hero y queda fijo arriba en cuanto la barra desaparece. */
+  #bar { height: 44px; }
+  #head {
+    height: 72px;
+    margin-bottom: -72px;
+    transition: background-color .5s var(--silk), border-color .5s var(--silk),
+                backdrop-filter .5s var(--silk), color .4s var(--silk);
+  }
+  @media (min-width: 1024px) { #head { height: 84px; margin-bottom: -84px; } }
+  #head.solid {
+    background: rgb(244 240 236 / .78);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-color: rgb(18 18 18 / .08);
+  }
+
+  /* Underline microinteraction */
+  .link-u { position: relative; }
+  .link-u::after {
+    content: ''; position: absolute; left: 0; bottom: -3px; height: 1px; width: 100%;
+    background: currentColor; transform: scaleX(0); transform-origin: right;
+    transition: transform .5s var(--silk);
+  }
+  .link-u:hover::after { transform: scaleX(1); transform-origin: left; }
+
+  /* Magnetic-ish button */
+  .btn {
+    position: relative; overflow: hidden; isolation: isolate;
+    transition: transform .4s var(--silk), color .4s var(--silk), border-color .4s var(--silk);
+  }
+  .btn::before {
+    content: ''; position: absolute; inset: 0; z-index: -1;
+    background: currentColor; opacity: 0;
+    transform: translateY(101%); border-radius: inherit;
+    transition: transform .55s var(--silk), opacity .55s var(--silk);
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:active { transform: translateY(0); }
+  .btn-dark::before { background: #F4F0EC; }
+  .btn-dark:hover { color: #121212; }
+  .btn-dark:hover::before { transform: translateY(0); opacity: 1; }
+  .btn-light::before { background: #121212; }
+  .btn-light:hover { color: #F4F0EC; border-color: #121212; }
+  .btn-light:hover::before { transform: translateY(0); opacity: 1; }
+
+  /* ---------- Hero ---------- */
+  .hero-media { will-change: transform; }
+  .grain::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .28; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  }
+  .scroll-cue span { animation: cue 2.4s var(--silk) infinite; }
+  @keyframes cue { 0%,100% { transform: translateY(0); opacity: .35 } 45% { transform: translateY(9px); opacity: 1 } }
+
+  /* ---------- Marquee ---------- */
+  .marquee { display: flex; width: max-content; animation: slide 42s linear infinite; }
+  .marquee:hover { animation-play-state: paused; }
+  @keyframes slide { to { transform: translateX(-50%) } }
+
+  /* ---------- Category cards ---------- */
+  .cat { transition: transform .7s var(--silk); }
+  .cat:hover { transform: translateY(-6px); }
+  .cat img { transition: transform 1.1s var(--silk), filter .7s var(--silk); }
+  .cat:hover img { transform: scale(1.07); }
+  .cat .cat-arrow { transition: transform .5s var(--silk), opacity .5s var(--silk); }
+  .cat:hover .cat-arrow { transform: translate(3px, -3px); opacity: 1; }
+
+  /* ---------- Products ---------- */
+  .rail { scrollbar-width: none; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .rail::-webkit-scrollbar { display: none; }
+  .card-media img { transition: opacity .7s var(--silk), transform 1.2s var(--silk); }
+  .card:hover .img-a { opacity: 0; }
+  .card:hover .img-b { opacity: 1; }
+  .card:hover .card-media img { transform: scale(1.05); }
+  .quick {
+    transform: translateY(120%); opacity: 0;
+    transition: transform .5s var(--silk), opacity .5s var(--silk);
+  }
+  .card:hover .quick, .card:focus-within .quick { transform: none; opacity: 1; }
+  @media (hover: none) { .quick { transform: none; opacity: 1; } }
+  .swatch { transition: transform .3s var(--silk), box-shadow .3s var(--silk); }
+  .swatch:hover { transform: scale(1.18); }
+  .swatch[aria-checked="true"] { box-shadow: 0 0 0 1.5px #F4F0EC inset, 0 0 0 1.5px #121212; }
+
+  /* ---------- Testimonials ---------- */
+  .quote-mark { font-family: Archivo, system-ui, sans-serif; font-weight: 800; line-height: .6; }
+
+  /* ---------- Accordion ---------- */
+  details summary::-webkit-details-marker { display: none; }
+  details[open] .plus { transform: rotate(45deg); }
+  .plus { transition: transform .45s var(--silk); }
+
+  /* ---------- Accessibility ---------- */
+  .skip:focus { transform: translateY(0); }
+  :focus-visible { outline: 2px solid #121212; outline-offset: 3px; border-radius: 4px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: .01ms !important; animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important; scroll-behavior: auto !important;
+    }
+    [data-reveal] { opacity: 1 !important; transform: none !important; }
+    [data-reveal="mask"] > * { transform: none !important; }
+    [data-reveal="zoom"] img { transform: none !important; filter: none !important; }
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": "LAZO",
+  "description": "Objetos de diseño de alta gama para perros y gatos: collares, correas, camas, juguetes, higiene y alimentación.",
+  "url": "https://lazo.example/",
+  "image": "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1200&q=80",
+  "priceRange": "€€€",
+  "currenciesAccepted": "EUR",
+  "email": "hola@lazo.example",
+  "address": { "@type": "PostalAddress", "addressLocality": "Madrid", "addressCountry": "ES" },
+  "sameAs": ["https://instagram.com/lazo", "https://pinterest.com/lazo", "https://tiktok.com/@lazo"]
+}
+</script>
+</head>
+
+<!-- Sin 'is-locked': la página nunca depende del JS para poder verse ni scrollear.
+     El bloqueo de scroll queda sólo para el menú móvil, que sí lo controla el JS. --><body class="font-sans antialiased">
+
+<a href="#main" class="skip fixed top-4 left-4 z-[150] bg-ink text-bone px-5 py-3 rounded-full text-sm -translate-y-24 transition-transform">Saltar al contenido</a>
+
+<!-- ============ BARRA DE ANUNCIO ============ -->
+<!-- En el flujo normal: se va con el scroll y no vuelve. -->
+<div id="bar" class="relative z-[80] bg-ink text-bone">
+  <div class="mx-auto max-w-[1600px] h-full px-5 sm:px-8 lg:px-12 flex items-center justify-center gap-6">
+    <button id="bar-prev" class="hidden sm:grid place-items-center h-7 w-7 shrink-0 opacity-45 hover:opacity-100 transition-opacity" aria-label="Anuncio anterior">
+      <svg width="13" height="13" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <p id="bar-msg" class="text-[12px] sm:text-[13px] tracking-[.06em] text-center transition-opacity duration-300" role="status" aria-live="polite">
+      Nuevo — Descubre la colección para gatos <span aria-hidden="true">→</span>
+    </p>
+    <button id="bar-next" class="hidden sm:grid place-items-center h-7 w-7 shrink-0 opacity-45 hover:opacity-100 transition-opacity" aria-label="Anuncio siguiente">
+      <svg width="13" height="13" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header id="head" class="sticky top-0 z-[90] border-b border-transparent text-bone">
+  <nav class="mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12 h-full" aria-label="Principal">
+    <div class="flex items-center justify-between h-full">
+
+      <a href="#" class="font-display text-2xl lg:text-[1.7rem] tracking-[.34em] indent-[.34em] leading-none" aria-label="LAZO, inicio">LAZO</a>
+
+      <ul class="hidden lg:flex items-center gap-10 text-[13px] font-medium tracking-[.14em] uppercase">
+        <li><a href="#categorias" class="link-u">Perros</a></li>
+        <li><a href="#categorias" class="link-u">Gatos</a></li>
+        <li><a href="#destacados" class="link-u">Novedades</a></li>
+        <li><a href="#historia" class="link-u">Casa LAZO</a></li>
+      </ul>
+
+      <div class="flex items-center gap-5 sm:gap-7">
+        <!-- Carrito real: el contador sale del estado, no está pintado a mano. -->
+        <button id="cart-open" class="relative grid place-items-center h-9 w-9" aria-label="Abrir carrito">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8h14l-1.2 12H6.2L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8" stroke-linecap="round"/></svg>
+          <span id="cart-count" class="absolute -top-0.5 -right-0.5 h-4 min-w-4 px-1 grid place-items-center rounded-full bg-ink text-bone text-[10px] font-semibold scale-0 transition-transform duration-300 ease-silk">0</span>
+        </button>
+        <button id="burger" class="lg:hidden grid place-items-center h-9 w-9 -mr-2" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
+          <span class="block w-5 space-y-[5px]">
+            <span class="block h-px bg-current"></span>
+            <span class="block h-px bg-current"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- ============ MOBILE DRAWER ============ -->
+<div id="drawer" class="fixed inset-0 z-[100] invisible opacity-0 transition-[opacity,visibility] duration-500 ease-silk lg:hidden">
+  <div class="absolute inset-0 bg-ink/40 backdrop-blur-sm" data-close></div>
+  <div id="drawer-panel" class="absolute right-0 top-0 h-full w-[86%] max-w-sm bg-bone translate-x-full transition-transform duration-[600ms] ease-silk flex flex-col">
+    <div class="flex items-center justify-between h-[72px] px-6 border-b border-ink/8">
+      <span class="font-display text-xl tracking-[.3em] indent-[.3em]">LAZO</span>
+      <button data-close class="h-9 w-9 grid place-items-center" aria-label="Cerrar menú">
+        <svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <ul class="flex-1 px-6 py-8 space-y-1 font-display text-[2rem] leading-[1.5]">
+      <li><a href="#categorias" data-close class="block">Perros</a></li>
+      <li><a href="#categorias" data-close class="block">Gatos</a></li>
+      <li><a href="#destacados" data-close class="block">Novedades</a></li>
+      <li><a href="#historia" data-close class="block">Casa LAZO</a></li>
+      <li><a href="#faq" data-close class="block">Ayuda</a></li>
+    </ul>
+    <div class="px-6 pb-10 space-y-4">
+      <a href="#destacados" data-close class="btn btn-dark block text-center bg-ink text-bone rounded-full py-4 text-sm tracking-[.14em] uppercase">Comprar ahora</a>
+      <p class="text-xs text-slate leading-relaxed">Envío gratis desde 60 € · Devoluciones en 30 días</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CARRITO ============ -->
+<div id="cart" class="fixed inset-0 z-[110] invisible opacity-0 transition-[opacity,visibility] duration-500 ease-silk" aria-hidden="true">
+  <div class="absolute inset-0 bg-ink/45 backdrop-blur-sm" data-cart-close></div>
+
+  <aside id="cart-panel" role="dialog" aria-modal="true" aria-label="Tu carrito"
+         class="absolute right-0 top-0 h-full w-full sm:w-[440px] bg-bone translate-x-full transition-transform duration-[600ms] ease-silk flex flex-col shadow-lift">
+
+    <header class="flex items-center justify-between h-[72px] px-6 border-b border-ink/10 shrink-0">
+      <h2 class="font-display font-extrabold text-lg">Tu carrito <span id="cart-title-count" class="text-stone font-normal"></span></h2>
+      <button data-cart-close class="h-9 w-9 grid place-items-center hover:opacity-60 transition-opacity" aria-label="Cerrar carrito">
+        <svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </header>
+
+    <!-- Estado vacío -->
+    <div id="cart-empty" class="flex-1 flex flex-col items-center justify-center text-center px-8 gap-5">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="text-stone"><path d="M5 8h14l-1.2 12H6.2L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8" stroke-linecap="round"/></svg>
+      <div>
+        <p class="font-display font-extrabold text-xl">Aún no hay nada</p>
+        <p class="mt-2 text-sm text-stone leading-relaxed max-w-[28ch]">Añade lo que te guste y podrás revisarlo todo aquí antes de pedir.</p>
+      </div>
+      <button data-cart-close class="btn btn-light border border-ink/20 rounded-full px-8 py-3.5 text-[12px] font-medium tracking-[.14em] uppercase">
+        <span class="relative z-10">Ver productos</span>
+      </button>
+    </div>
+
+    <!-- Líneas del pedido -->
+    <ul id="cart-items" class="flex-1 overflow-y-auto px-6 py-5 space-y-5 hidden"></ul>
+
+    <!-- Totales + único punto de compra -->
+    <footer id="cart-foot" class="border-t border-ink/10 px-6 py-5 space-y-4 shrink-0 hidden">
+      <dl class="space-y-2 text-sm">
+        <div class="flex justify-between">
+          <dt class="text-stone">Subtotal</dt>
+          <dd id="cart-subtotal" class="tabular-nums">0,00 €</dd>
+        </div>
+        <div class="flex justify-between">
+          <dt class="text-stone">Envío</dt>
+          <dd id="cart-ship" class="tabular-nums text-stone">—</dd>
+        </div>
+        <div id="cart-gap" class="text-xs text-stone bg-sand rounded-xl px-3.5 py-2.5 leading-relaxed hidden"></div>
+        <div class="flex justify-between pt-3 border-t border-ink/10 text-base font-semibold">
+          <dt>Total</dt>
+          <dd id="cart-total" class="tabular-nums">0,00 €</dd>
+        </div>
+      </dl>
+
+      <button id="cart-checkout" class="w-full inline-flex items-center justify-center gap-2.5 bg-ink text-bone rounded-full py-4 text-[13px] font-semibold tracking-[.12em] uppercase hover:bg-slate transition-colors duration-500">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2.02c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91a9.85 9.85 0 0 0-2.9-7.01 9.82 9.82 0 0 0-7.01-2.89Zm0 18.13a8.23 8.23 0 0 1-4.2-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.69 8.21-8.23 8.21Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.56c.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+        Comprar
+      </button>
+      <p class="text-[11px] text-stone text-center leading-relaxed">Confirmamos stock y envío por WhatsApp antes de cobrar nada.</p>
+    </footer>
+  </aside>
+</div>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="relative h-[100svh] min-h-[620px] w-full overflow-hidden bg-ink grain">
+  <div class="hero-media absolute inset-0 -bottom-24">
+    <img
+      src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&amp;fit=crop&amp;w=2400&amp;q=80"
+      alt="Perro de pelaje claro descansando junto a su dueña en un salón luminoso de tonos arena"
+      class="h-full w-full object-cover object-center" fetchpriority="high" decoding="async">
+    <div class="absolute inset-0 bg-gradient-to-b from-ink/55 via-ink/25 to-ink/75"></div>
+  </div>
+
+  <div class="relative h-full mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12 flex flex-col justify-end pb-16 sm:pb-20 lg:pb-24 text-bone">
+
+    <p data-reveal style="--d:900ms" class="text-[11px] sm:text-xs tracking-[.32em] uppercase text-bone/70 mb-6 sm:mb-8">Colección 2026 · Hecho en Europa</p>
+
+    <h1 class="font-display font-extrabold tracking-tightest text-[clamp(2.6rem,8.2vw,7.5rem)] leading-[0.96] max-w-[15ch]">
+      <span class="mask-line"><span data-reveal="mask" style="--d:1000ms"><span>Diseñado para</span></span></span>
+      <span class="mask-line"><span data-reveal="mask" style="--d:1120ms"><span>quienes aman</span></span></span>
+      <span class="mask-line"><span data-reveal="mask" style="--d:1240ms"><span class="text-clay">a sus mascotas.</span></span></span>
+    </h1>
+
+    <div class="mt-8 sm:mt-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-8">
+      <p data-reveal style="--d:1400ms" class="text-base sm:text-lg text-bone/75 max-w-md leading-relaxed font-light">
+        No es un accesorio. Es el objeto que sostiene vuestro paseo de cada tarde, la siesta de las cuatro, la vuelta a casa.
+      </p>
+
+      <div data-reveal style="--d:1520ms" class="flex flex-wrap gap-3 shrink-0">
+        <a href="#destacados" class="btn btn-dark bg-bone text-ink rounded-full px-8 sm:px-10 py-4 text-[13px] font-medium tracking-[.14em] uppercase">
+          <span class="relative z-10">Comprar ahora</span>
+        </a>
+        <a href="#categorias" class="btn btn-dark border border-bone/40 text-bone rounded-full px-8 sm:px-10 py-4 text-[13px] font-medium tracking-[.14em] uppercase">
+          <span class="relative z-10">Explorar colecciones</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-cue absolute bottom-6 left-1/2 -translate-x-1/2 hidden lg:block text-bone/60" aria-hidden="true">
+    <span class="block"><svg width="14" height="26" viewBox="0 0 14 26" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M7 2v20m0 0-5-5m5 5 5-5" stroke-linecap="round"/></svg></span>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<section class="bg-ink text-bone/55 py-4 overflow-hidden border-y border-bone/10" aria-hidden="true">
+  <div class="marquee gap-14 text-[11px] tracking-[.32em] uppercase whitespace-nowrap">
+    <span>Envío gratis desde 60 €</span><span>·</span><span>Materiales de origen trazable</span><span>·</span>
+    <span>Devoluciones en 30 días</span><span>·</span><span>Garantía de por vida</span><span>·</span>
+    <span>Libre de crueldad animal</span><span>·</span><span>Embalaje 100 % reciclado</span><span>·</span>
+    <span>Envío gratis desde 60 €</span><span>·</span><span>Materiales de origen trazable</span><span>·</span>
+    <span>Devoluciones en 30 días</span><span>·</span><span>Garantía de por vida</span><span>·</span>
+    <span>Libre de crueldad animal</span><span>·</span><span>Embalaje 100 % reciclado</span><span>·</span>
+  </div>
+</section>
+
+<!-- ============ MANIFIESTO ============ -->
+<section id="historia" class="py-24 sm:py-32 lg:py-44">
+  <div class="mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12">
+    <div class="grid lg:grid-cols-12 gap-y-12 gap-x-16 items-start">
+      <div class="lg:col-span-4">
+        <p data-reveal class="text-[11px] tracking-[.32em] uppercase text-stone">(01) Casa LAZO</p>
+      </div>
+      <div class="lg:col-span-8">
+        <h2 class="font-display font-extrabold text-[clamp(1.7rem,3.6vw,3.25rem)] leading-[1.24] tracking-tight max-w-[22ch] sm:max-w-[26ch]">
+          <span class="mask-line"><span data-reveal="mask"><span>Diseñamos pocas cosas.</span></span></span>
+          <span class="mask-line"><span data-reveal="mask" style="--d:110ms"><span class="text-stone">Las diseñamos para durar</span></span></span>
+          <span class="mask-line"><span data-reveal="mask" style="--d:220ms"><span class="text-stone">toda una vida juntos.</span></span></span>
+        </h2>
+        <div class="mt-12 grid sm:grid-cols-3 gap-10 sm:gap-8 max-w-3xl">
+          <div data-reveal style="--d:120ms">
+            <p class="font-display text-3xl">14</p>
+            <p class="mt-2 text-sm text-slate leading-relaxed">años de garantía real en herrajes y cierres</p>
+          </div>
+          <div data-reveal style="--d:220ms">
+            <p class="font-display text-3xl">92 %</p>
+            <p class="mt-2 text-sm text-slate leading-relaxed">de materiales reciclados o de origen certificado</p>
+          </div>
+          <div data-reveal style="--d:320ms">
+            <p class="font-display text-3xl">4,9<span class="text-stone text-xl">/5</span></p>
+            <p class="mt-2 text-sm text-slate leading-relaxed">valoración media de 12.480 familias</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CATEGORÍAS ============ -->
+<section id="categorias" class="pb-24 sm:pb-32 lg:pb-44">
+  <div class="mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12">
+
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-10 sm:mb-14">
+      <div>
+        <p data-reveal class="text-[11px] tracking-[.32em] uppercase text-stone mb-4">(02) Colecciones</p>
+        <h2 class="font-display font-extrabold text-[clamp(2rem,5vw,4rem)] tracking-tight leading-[1.05]">
+          <span class="mask-line"><span data-reveal="mask"><span>Todo lo esencial.</span></span></span>
+          <span class="mask-line"><span data-reveal="mask" style="--d:110ms"><span class="text-stone">Nada de más.</span></span></span>
+        </h2>
+      </div>
+      <a href="#" data-reveal class="link-u text-[13px] tracking-[.14em] uppercase font-medium pb-1">Ver las 7 colecciones</a>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+
+      <!-- Grande -->
+      <a href="#" data-reveal class="cat group col-span-2 lg:row-span-2 relative overflow-hidden rounded-4xl sm:rounded-5xl bg-sand aspect-[4/5] lg:aspect-auto lg:min-h-[640px] shadow-soft hover:shadow-lift transition-shadow duration-700">
+        <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" alt="Perro golden retriever con collar de cuero natural sentado sobre fondo neutro" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/5 to-transparent"></div>
+        <div class="absolute inset-0 p-6 sm:p-9 flex flex-col justify-between text-bone">
+          <span class="self-start bg-bone/15 backdrop-blur-md border border-bone/25 rounded-full px-4 py-1.5 text-[10px] tracking-[.22em] uppercase">Más vendido</span>
+          <div class="flex items-end justify-between gap-4">
+            <div>
+              <h3 class="font-display text-[clamp(1.7rem,3.4vw,2.9rem)] leading-none">Collares</h3>
+              <p class="mt-2.5 text-sm text-bone/70">Cuero vegetal · 34 acabados</p>
+            </div>
+            <span class="cat-arrow opacity-50 shrink-0 grid place-items-center h-11 w-11 rounded-full border border-bone/35">
+              <svg width="15" height="15" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Correas -->
+      <a href="#" data-reveal style="--d:80ms" class="cat group relative overflow-hidden rounded-4xl bg-clay aspect-[4/5] shadow-soft hover:shadow-lift transition-shadow duration-700">
+        <img src="https://images.unsplash.com/photo-1477884213360-7e9d7dcc1e48?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Correa de mano sujetando a un perro durante un paseo al atardecer" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/65 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 p-5 sm:p-7 text-bone flex items-end justify-between gap-3">
+          <div>
+            <h3 class="font-display text-2xl sm:text-[1.9rem] leading-none">Correas</h3>
+            <p class="mt-2 text-xs text-bone/65">Desde 44 €</p>
+          </div>
+          <span class="cat-arrow opacity-40 shrink-0"><svg width="15" height="15" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </div>
+      </a>
+
+      <!-- Camas -->
+      <a href="#" data-reveal style="--d:160ms" class="cat group relative overflow-hidden rounded-4xl bg-sand aspect-[4/5] shadow-soft hover:shadow-lift transition-shadow duration-700">
+        <img src="https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Gato durmiendo plácidamente sobre una cama textil de tono arena" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/65 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 p-5 sm:p-7 text-bone flex items-end justify-between gap-3">
+          <div>
+            <h3 class="font-display text-2xl sm:text-[1.9rem] leading-none">Camas</h3>
+            <p class="mt-2 text-xs text-bone/65">Espuma viscoelástica</p>
+          </div>
+          <span class="cat-arrow opacity-40 shrink-0"><svg width="15" height="15" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </div>
+      </a>
+
+      <!-- Juguetes -->
+      <a href="#" data-reveal style="--d:240ms" class="cat group relative overflow-hidden rounded-4xl bg-blush/30 aspect-[4/5] shadow-soft hover:shadow-lift transition-shadow duration-700">
+        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Perro jugando con un juguete de caucho natural sobre la hierba" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/65 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 p-5 sm:p-7 text-bone flex items-end justify-between gap-3">
+          <div>
+            <h3 class="font-display text-2xl sm:text-[1.9rem] leading-none">Juguetes</h3>
+            <p class="mt-2 text-xs text-bone/65">Caucho natural</p>
+          </div>
+          <span class="cat-arrow opacity-40 shrink-0"><svg width="15" height="15" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </div>
+      </a>
+
+      <!-- Accesorios -->
+      <a href="#" data-reveal style="--d:320ms" class="cat group relative overflow-hidden rounded-4xl bg-clay aspect-[4/5] shadow-soft hover:shadow-lift transition-shadow duration-700">
+        <img src="https://images.unsplash.com/photo-1425082661705-1834bfd09dca?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Gato atigrado observando desde una repisa junto a accesorios de diseño" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/65 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 p-5 sm:p-7 text-bone flex items-end justify-between gap-3">
+          <div>
+            <h3 class="font-display text-2xl sm:text-[1.9rem] leading-none">Accesorios</h3>
+            <p class="mt-2 text-xs text-bone/65">Placas, arneses, bolsos</p>
+          </div>
+          <span class="cat-arrow opacity-40 shrink-0"><svg width="15" height="15" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </div>
+      </a>
+
+      <!-- Higiene -->
+      <a href="#" data-reveal style="--d:400ms" class="cat group relative overflow-hidden rounded-4xl bg-sand aspect-[4/5] shadow-soft hover:shadow-lift transition-shadow duration-700">
+        <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Perro recién bañado envuelto en una toalla de algodón" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/65 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 p-5 sm:p-7 text-bone flex items-end justify-between gap-3">
+          <div>
+            <h3 class="font-display text-2xl sm:text-[1.9rem] leading-none">Higiene</h3>
+            <p class="mt-2 text-xs text-bone/65">Fórmulas sin sulfatos</p>
+          </div>
+          <span class="cat-arrow opacity-40 shrink-0"><svg width="15" height="15" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </div>
+      </a>
+
+      <!-- Alimentos -->
+      <a href="#" data-reveal style="--d:480ms" class="cat group relative overflow-hidden rounded-4xl bg-moss aspect-[4/5] lg:col-span-2 lg:aspect-[2/1.02] shadow-soft hover:shadow-lift transition-shadow duration-700">
+        <img src="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" alt="Perro esperando junto a su cuenco de cerámica en una cocina luminosa" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent lg:bg-gradient-to-r lg:from-ink/75 lg:via-ink/20 lg:to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 p-5 sm:p-7 lg:p-9 text-bone flex items-end justify-between gap-3">
+          <div>
+            <h3 class="font-display text-2xl sm:text-[1.9rem] lg:text-[2.6rem] leading-none">Alimentos</h3>
+            <p class="mt-2 text-xs sm:text-sm text-bone/65">Receta fresca · Suscripción mensual desde 29 €</p>
+          </div>
+          <span class="cat-arrow opacity-40 shrink-0 lg:grid lg:place-items-center lg:h-11 lg:w-11 lg:rounded-full lg:border lg:border-bone/35">
+            <svg width="15" height="15" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCTOS DESTACADOS ============ -->
+<section id="destacados" class="pb-24 sm:pb-32 lg:pb-44">
+  <div class="mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12 mb-10 sm:mb-14">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div>
+        <p data-reveal class="text-[11px] tracking-[.32em] uppercase text-stone mb-4">(03) Destacados</p>
+        <h2 class="font-display font-extrabold text-[clamp(2rem,5vw,4rem)] tracking-tight leading-[1.05]">
+          <span class="mask-line"><span data-reveal="mask"><span>Los favoritos</span></span></span>
+          <span class="mask-line"><span data-reveal="mask" style="--d:110ms"><span class="text-stone">de la casa.</span></span></span>
+        </h2>
+      </div>
+      <div data-reveal class="flex gap-2.5">
+        <button id="prev" class="grid place-items-center h-12 w-12 rounded-full border border-ink/15 hover:bg-ink hover:text-bone hover:border-ink transition-all duration-500 ease-silk disabled:opacity-25 disabled:pointer-events-none" aria-label="Producto anterior">
+          <svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <button id="next" class="grid place-items-center h-12 w-12 rounded-full border border-ink/15 hover:bg-ink hover:text-bone hover:border-ink transition-all duration-500 ease-silk disabled:opacity-25 disabled:pointer-events-none" aria-label="Producto siguiente">
+          <svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="rail" class="rail flex gap-4 sm:gap-6 overflow-x-auto px-5 sm:px-8 lg:px-12 pb-4" tabindex="0" role="region" aria-label="Carrusel de productos destacados">
+    <!-- rellenado por JS -->
+  </div>
+
+  <div class="mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12 mt-10">
+    <div class="h-px bg-ink/10 relative overflow-hidden rounded-full">
+      <div id="rail-progress" class="absolute inset-y-0 left-0 bg-ink rounded-full w-1/4 transition-[width,transform] duration-300 ease-out"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECCIÓN EMOCIONAL ============ -->
+<section class="relative h-[92svh] min-h-[560px] overflow-hidden bg-ink grain">
+  <div data-reveal="zoom" class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&amp;fit=crop&amp;w=2200&amp;q=80" alt="Mujer abrazando a su gato junto a una ventana con luz cálida" loading="lazy" decoding="async" class="h-full w-full object-cover object-center">
+  </div>
+  <div class="absolute inset-0 bg-ink/45"></div>
+
+  <div class="relative h-full mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12 flex items-center justify-center text-center">
+    <div class="max-w-4xl text-bone">
+      <p data-reveal class="text-[11px] tracking-[.32em] uppercase text-bone/55 mb-8">(04) Manifiesto</p>
+      <blockquote class="font-display font-extrabold text-[clamp(2rem,6vw,5rem)] leading-[1.06] tracking-tight">
+        <span class="mask-line"><span data-reveal="mask" style="--d:100ms"><span>Porque ellos también</span></span></span>
+        <span class="mask-line"><span data-reveal="mask" style="--d:220ms"><span class="text-clay">merecen lo mejor.</span></span></span>
+      </blockquote>
+      <p data-reveal style="--d:400ms" class="mt-8 sm:mt-10 text-base sm:text-lg text-bone/70 max-w-xl mx-auto leading-relaxed font-light">
+        Nos dan doce, quince, dieciocho años. Todo lo que tienen. Lo mínimo que podemos devolverles es un objeto pensado con la misma honestidad.
+      </p>
+      <a href="#historia" data-reveal style="--d:520ms" class="btn btn-dark mt-10 inline-block border border-bone/40 text-bone rounded-full px-10 py-4 text-[13px] font-medium tracking-[.14em] uppercase">
+        <span class="relative z-10">Nuestra historia</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIOS ============ -->
+<section class="py-24 sm:py-32 lg:py-44">
+  <div class="mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12">
+
+    <div class="mb-12 sm:mb-16">
+      <p data-reveal class="text-[11px] tracking-[.32em] uppercase text-stone mb-4">(05) Familias LAZO</p>
+      <h2 class="font-display font-extrabold text-[clamp(2rem,5vw,4rem)] tracking-tight leading-[1.05] max-w-[16ch]">
+        <span class="mask-line"><span data-reveal="mask"><span>12.480 familias</span></span></span>
+        <span class="mask-line"><span data-reveal="mask" style="--d:110ms"><span class="text-stone">nos lo cuentan.</span></span></span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-4 sm:gap-6">
+
+      <figure data-reveal class="bg-sand/60 rounded-4xl p-7 sm:p-9 flex flex-col shadow-soft">
+        <span class="quote-mark text-6xl text-clay mb-4" aria-hidden="true">"</span>
+        <blockquote class="text-[17px] leading-[1.65] text-ink/85 flex-1">
+          Nuestra Nala rompía un arnés cada tres meses. El de LAZO lleva dos años y sigue como el primer día. Y sinceramente, es lo más bonito que tiene puesto.
+        </blockquote>
+        <figcaption class="mt-8 pt-7 border-t border-ink/8 flex items-center gap-4">
+          <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;w=200&amp;q=80" alt="Nala, una perra golden retriever" loading="lazy" decoding="async" class="h-12 w-12 rounded-full object-cover shrink-0">
+          <div>
+            <p class="text-sm font-medium">Marta &amp; Nala</p>
+            <p class="text-xs text-stone mt-0.5">Arnés Sierra · Barcelona</p>
+          </div>
+          <span class="ml-auto text-xs text-stone tracking-widest" aria-label="5 de 5 estrellas">★★★★★</span>
+        </figcaption>
+      </figure>
+
+      <figure data-reveal style="--d:120ms" class="bg-ink text-bone rounded-4xl p-7 sm:p-9 flex flex-col shadow-lift">
+        <span class="quote-mark text-6xl text-clay/60 mb-4" aria-hidden="true">"</span>
+        <blockquote class="text-[17px] leading-[1.65] text-bone/85 flex-1">
+          Compré la cama pensando en él y ha terminado siendo el mueble que más me gusta del salón. Nunca pensé que diría eso de una cama para gatos.
+        </blockquote>
+        <figcaption class="mt-8 pt-7 border-t border-bone/12 flex items-center gap-4">
+          <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&amp;fit=crop&amp;w=200&amp;q=80" alt="Kiro, un gato de pelo gris" loading="lazy" decoding="async" class="h-12 w-12 rounded-full object-cover shrink-0">
+          <div>
+            <p class="text-sm font-medium">Andrés &amp; Kiro</p>
+            <p class="text-xs text-bone/50 mt-0.5">Cama Duna · Madrid</p>
+          </div>
+          <span class="ml-auto text-xs text-bone/50 tracking-widest" aria-label="5 de 5 estrellas">★★★★★</span>
+        </figcaption>
+      </figure>
+
+      <figure data-reveal style="--d:240ms" class="bg-sand/60 rounded-4xl p-7 sm:p-9 flex flex-col shadow-soft">
+        <span class="quote-mark text-6xl text-clay mb-4" aria-hidden="true">"</span>
+        <blockquote class="text-[17px] leading-[1.65] text-ink/85 flex-1">
+          El collar llegó en una caja que no quise tirar. Se nota cuándo alguien ha pensado cada paso, incluso el de abrir el paquete un martes por la tarde.
+        </blockquote>
+        <figcaption class="mt-8 pt-7 border-t border-ink/8 flex items-center gap-4">
+          <img src="https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&amp;fit=crop&amp;w=200&amp;q=80" alt="Bruno, un perro de tamaño mediano" loading="lazy" decoding="async" class="h-12 w-12 rounded-full object-cover shrink-0">
+          <div>
+            <p class="text-sm font-medium">Lucía &amp; Bruno</p>
+            <p class="text-xs text-stone mt-0.5">Collar Ámbar · Valencia</p>
+          </div>
+          <span class="ml-auto text-xs text-stone tracking-widest" aria-label="5 de 5 estrellas">★★★★★</span>
+        </figcaption>
+      </figure>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="pb-24 sm:pb-32 lg:pb-44">
+  <div class="mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12">
+    <div class="grid lg:grid-cols-12 gap-y-10 gap-x-16">
+      <div class="lg:col-span-4">
+        <p data-reveal class="text-[11px] tracking-[.32em] uppercase text-stone mb-4">(06) Preguntas</p>
+        <h2 data-reveal style="--d:80ms" class="font-display font-extrabold text-[clamp(1.8rem,3.4vw,2.75rem)] tracking-tight leading-[1.15]">Lo que más<br><span class="text-stone">nos preguntáis.</span></h2>
+        <a data-wa="¡Hola! Vengo de la web de LAZO y tengo una duda." data-reveal style="--d:160ms" class="link-u inline-block mt-7 text-[13px] tracking-[.14em] uppercase font-medium pb-1">Preguntar por WhatsApp</a>
+      </div>
+
+      <div class="lg:col-span-8 divide-y divide-ink/10 border-y border-ink/10">
+        <details data-reveal class="group py-6">
+          <summary class="flex items-center justify-between gap-6 cursor-pointer list-none">
+            <span class="text-lg sm:text-xl font-light pr-4">¿Cómo elijo la talla correcta?</span>
+            <span class="plus shrink-0 grid place-items-center h-8 w-8 rounded-full border border-ink/15"><svg width="12" height="12" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+          </summary>
+          <p class="mt-4 text-slate leading-relaxed max-w-2xl text-[15px]">Mide el contorno del cuello o pecho con una cinta flexible y deja dos dedos de holgura. Cada ficha de producto incluye una guía específica de la pieza. Si dudas entre dos tallas, elige la mayor: los cierres LAZO permiten hasta 6 cm de ajuste.</p>
+        </details>
+        <details data-reveal style="--d:80ms" class="group py-6">
+          <summary class="flex items-center justify-between gap-6 cursor-pointer list-none">
+            <span class="text-lg sm:text-xl font-light pr-4">¿Cuánto tarda el envío?</span>
+            <span class="plus shrink-0 grid place-items-center h-8 w-8 rounded-full border border-ink/15"><svg width="12" height="12" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+          </summary>
+          <p class="mt-4 text-slate leading-relaxed max-w-2xl text-[15px]">Península 24-48 h laborables. Baleares y Europa, 3-5 días. Gratis a partir de 60 €. Los pedidos realizados antes de las 15:00 salen el mismo día.</p>
+        </details>
+        <details data-reveal style="--d:160ms" class="group py-6">
+          <summary class="flex items-center justify-between gap-6 cursor-pointer list-none">
+            <span class="text-lg sm:text-xl font-light pr-4">¿Qué cubre la garantía de por vida?</span>
+            <span class="plus shrink-0 grid place-items-center h-8 w-8 rounded-full border border-ink/15"><svg width="12" height="12" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+          </summary>
+          <p class="mt-4 text-slate leading-relaxed max-w-2xl text-[15px]">Herrajes, costuras y cierres, sin límite de tiempo. Si algo cede con un uso normal, lo reparamos o lo reemplazamos. El desgaste estético del cuero no entra: es parte de su historia.</p>
+        </details>
+        <details data-reveal style="--d:240ms" class="group py-6">
+          <summary class="flex items-center justify-between gap-6 cursor-pointer list-none">
+            <span class="text-lg sm:text-xl font-light pr-4">¿Los materiales son seguros para mi mascota?</span>
+            <span class="plus shrink-0 grid place-items-center h-8 w-8 rounded-full border border-ink/15"><svg width="12" height="12" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+          </summary>
+          <p class="mt-4 text-slate leading-relaxed max-w-2xl text-[15px]">Todos nuestros textiles están certificados OEKO-TEX Standard 100, libres de sustancias nocivas. El caucho de los juguetes es natural y apto para contacto oral. Ningún producto se testa en animales.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER ============ -->
+<section class="pb-6">
+  <div class="mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12">
+    <div data-reveal class="relative overflow-hidden rounded-5xl bg-ink text-bone grain">
+      <img src="https://images.unsplash.com/photo-1544568100-847a948585b9?auto=format&amp;fit=crop&amp;w=1600&amp;q=80" alt="" aria-hidden="true" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover opacity-25">
+      <div class="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/40"></div>
+
+      <div class="relative px-6 sm:px-12 lg:px-20 py-16 sm:py-24 lg:py-32 max-w-2xl">
+        <p class="text-[11px] tracking-[.32em] uppercase text-bone/50 mb-6">(07) Comunidad</p>
+        <h2 class="font-display font-extrabold text-[clamp(2rem,4.5vw,3.6rem)] leading-[1.08] tracking-tight">
+          Únete a nuestra <span class="text-clay">comunidad.</span>
+        </h2>
+        <p class="mt-5 text-bone/65 leading-relaxed max-w-md font-light">
+          Acceso anticipado a cada colección, guías de cuidado escritas por veterinarios y un 10 % en tu primer pedido. Un correo al mes. Ni uno más.
+        </p>
+
+        <form id="nl" class="mt-9 flex flex-col sm:flex-row gap-3 max-w-lg" novalidate>
+          <label for="nl-mail" class="sr-only">Correo electrónico</label>
+          <input id="nl-mail" type="email" required autocomplete="email" placeholder="tu@correo.com"
+            class="flex-1 bg-transparent border border-bone/25 rounded-full px-6 py-4 text-bone placeholder:text-bone/35 focus:border-bone focus:ring-0 transition-colors duration-500 text-[15px]">
+          <button type="submit" class="btn btn-dark bg-bone text-ink rounded-full px-9 py-4 text-[13px] font-medium tracking-[.14em] uppercase shrink-0">
+            <span class="relative z-10">Suscribirme</span>
+          </button>
+        </form>
+        <p id="nl-msg" class="mt-4 text-sm text-clay h-5" role="status" aria-live="polite"></p>
+        <p class="mt-2 text-xs text-bone/35 leading-relaxed max-w-md">Al suscribirte aceptas nuestra política de privacidad. Puedes darte de baja en un clic.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="pt-24 sm:pt-32 pb-10">
+  <div class="mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12">
+
+    <div class="grid gap-14 lg:gap-10 lg:grid-cols-12 pb-16 border-b border-ink/10">
+
+      <div class="lg:col-span-4">
+        <p class="font-display text-3xl tracking-[.3em] indent-[.3em]">LAZO</p>
+        <p class="mt-6 text-slate leading-relaxed max-w-xs text-[15px] font-light">
+          Objetos honestos para la vida compartida. Diseñados en Madrid, fabricados en Europa, pensados para durar más que las modas.
+        </p>
+        <div class="mt-8 flex gap-3">
+          <a href="#" aria-label="LAZO en Instagram" class="grid place-items-center h-11 w-11 rounded-full border border-ink/12 hover:bg-ink hover:text-bone hover:border-ink transition-all duration-500 ease-silk">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="LAZO en Pinterest" class="grid place-items-center h-11 w-11 rounded-full border border-ink/12 hover:bg-ink hover:text-bone hover:border-ink transition-all duration-500 ease-silk">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7c-2.2 0-3.6 1.5-3.6 3.3 0 .9.4 1.9 1.2 2.2.2.1.2 0 .3-.2 0-.1.1-.4.1-.5.1-.2 0-.3-.1-.4-.3-.4-.5-.9-.5-1.5 0-1.5 1.2-2.9 3.1-2.9 1.7 0 2.6 1 2.6 2.3 0 1.7-.8 3.2-1.9 3.2-.6 0-1.1-.5-1-1.1.2-.8.5-1.6.5-2.2 0-.5-.3-.9-.8-.9-.7 0-1.2.7-1.2 1.6 0 .6.2 1 .2 1l-.8 3.4c-.2 1 0 2.2 0 2.3 0 .1.1.1.2 0 .1-.1.9-1.1 1.2-2.1l.4-1.6c.2.4.9.8 1.6.8 2.1 0 3.6-1.9 3.6-4.5 0-2-1.7-3.5-4-3.5"/></svg>
+          </a>
+          <a href="#" aria-label="LAZO en TikTok" class="grid place-items-center h-11 w-11 rounded-full border border-ink/12 hover:bg-ink hover:text-bone hover:border-ink transition-all duration-500 ease-silk">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M14 4v10.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 4c.4 2.4 2 4 4.5 4.2"/></svg>
+          </a>
+          <a href="#" aria-label="LAZO en YouTube" class="grid place-items-center h-11 w-11 rounded-full border border-ink/12 hover:bg-ink hover:text-bone hover:border-ink transition-all duration-500 ease-silk">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="4"/><path d="m10.5 9.5 4.5 2.5-4.5 2.5v-5Z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <nav class="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-10" aria-label="Pie de página">
+        <div>
+          <h3 class="text-[11px] tracking-[.24em] uppercase text-stone mb-5">Tienda</h3>
+          <ul class="space-y-3 text-[15px] text-slate font-light">
+            <li><a href="#categorias" class="link-u hover:text-ink transition-colors">Collares</a></li>
+            <li><a href="#categorias" class="link-u hover:text-ink transition-colors">Correas</a></li>
+            <li><a href="#categorias" class="link-u hover:text-ink transition-colors">Camas</a></li>
+            <li><a href="#categorias" class="link-u hover:text-ink transition-colors">Juguetes</a></li>
+            <li><a href="#categorias" class="link-u hover:text-ink transition-colors">Higiene</a></li>
+            <li><a href="#categorias" class="link-u hover:text-ink transition-colors">Alimentos</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-[11px] tracking-[.24em] uppercase text-stone mb-5">Ayuda</h3>
+          <ul class="space-y-3 text-[15px] text-slate font-light">
+            <li><a href="#faq" class="link-u hover:text-ink transition-colors">Preguntas frecuentes</a></li>
+            <li><a href="#" class="link-u hover:text-ink transition-colors">Guía de tallas</a></li>
+            <li><a href="#" class="link-u hover:text-ink transition-colors">Envíos</a></li>
+            <li><a href="#" class="link-u hover:text-ink transition-colors">Devoluciones</a></li>
+            <li><a href="#" class="link-u hover:text-ink transition-colors">Seguimiento de pedido</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-[11px] tracking-[.24em] uppercase text-stone mb-5">Casa LAZO</h3>
+          <ul class="space-y-3 text-[15px] text-slate font-light">
+            <li><a href="#historia" class="link-u hover:text-ink transition-colors">Nuestra historia</a></li>
+            <li><a href="#" class="link-u hover:text-ink transition-colors">Materiales</a></li>
+            <li><a href="#" class="link-u hover:text-ink transition-colors">Sostenibilidad</a></li>
+            <li><a href="#" class="link-u hover:text-ink transition-colors">Fundación LAZO</a></li>
+            <li><a href="#" class="link-u hover:text-ink transition-colors">Trabaja con nosotros</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-[11px] tracking-[.24em] uppercase text-stone mb-5">Contacto</h3>
+          <ul class="space-y-3 text-[15px] text-slate font-light">
+            <li>
+              <a data-wa="¡Hola! Vengo de la web de LAZO." class="link-u hover:text-ink transition-colors inline-flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2.02c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91a9.85 9.85 0 0 0-2.9-7.01 9.82 9.82 0 0 0-7.01-2.89Zm0 18.13a8.23 8.23 0 0 1-4.2-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.69 8.21-8.23 8.21Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.56c.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+                WhatsApp · 33 1172 4287
+              </a>
+            </li>
+            <li><a href="mailto:hola@lazo.example" class="link-u hover:text-ink transition-colors">hola@lazo.example</a></li>
+            <li class="pt-1 leading-relaxed text-stone text-sm">Lun–Vie · 9:00–18:00 CET</li>
+            <li class="leading-relaxed text-stone text-sm">Calle del Prado 12<br>28014 Madrid</li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="pt-8 flex flex-col-reverse sm:flex-row items-start sm:items-center justify-between gap-6">
+      <p class="text-xs text-stone">© 2026 LAZO Studio S.L. Todos los derechos reservados.</p>
+      <ul class="flex flex-wrap gap-x-7 gap-y-2 text-xs text-stone">
+        <li><a href="#" class="link-u hover:text-ink transition-colors">Privacidad</a></li>
+        <li><a href="#" class="link-u hover:text-ink transition-colors">Cookies</a></li>
+        <li><a href="#" class="link-u hover:text-ink transition-colors">Términos</a></li>
+        <li><a href="#" class="link-u hover:text-ink transition-colors">Accesibilidad</a></li>
+        <li><a href="#" class="link-u hover:text-ink transition-colors">Aviso legal</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  'use strict';
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ================= WHATSAPP =================
+     ÚNICO sitio donde vive el número. Si cambia, se cambia aquí y ya.
+
+     Formato: código de país + número, sin +, sin espacios, sin guiones.
+     Aquí asumo México (+52) por el 33 de Guadalajara. VERIFÍCALO:
+       México  → '523311724287'   (estándar actual: 52 + 10 dígitos)
+       Si no abre el chat, prueba con el 1 heredado: '5213311724287'
+       Otro país → cambia el prefijo (España 34, Colombia 57, Argentina 54...)  */
+  const WA_PHONE = '523311724287';
+
+  const waLink = (msg) => `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(msg)}`;
+
+  // Cualquier elemento con data-wa se convierte en enlace de WhatsApp.
+  const wireWa = (scope = document) =>
+    scope.querySelectorAll('[data-wa]:not([data-wired])').forEach(el => {
+      el.setAttribute('data-wired', '1');
+      el.href = waLink(el.dataset.wa);
+      el.target = '_blank';
+      el.rel = 'noopener';
+    });
+  wireWa();
+
+  /* ---------- Red de seguridad de imágenes ----------
+     Si una foto remota no carga (red caída, ID retirado), la sustituimos por
+     un degradado de la paleta para que el layout nunca se rompa.          */
+  const FALLBACKS = [
+    'linear-gradient(145deg,#EDE8E2 0%,#DFC5A9 55%,#F9C0DF 100%)',
+    'linear-gradient(145deg,#E7E5FF 0%,#CAC5FF 60%,#232323 100%)',
+    'linear-gradient(145deg,#F4F0EC 0%,#DFC5A9 100%)',
+    'linear-gradient(145deg,#FFF1FA 0%,#CAC5FF 100%)'
+  ];
+  let fbi = 0;
+  const gracefulImage = (img) => {
+    if (img.dataset.failed) return;
+    img.dataset.failed = '1';
+    const host = img.parentElement;
+    if (host) {
+      host.style.backgroundImage = FALLBACKS[fbi++ % FALLBACKS.length];
+      host.style.backgroundSize = 'cover';
+    }
+    img.style.opacity = '0';
+  };
+  document.addEventListener('error', e => {
+    if (e.target.tagName === 'IMG') gracefulImage(e.target);
+  }, true);
+
+  /* ---------- Reveal on scroll ---------- */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  const observeAll = () => document.querySelectorAll('[data-reveal]:not(.in)').forEach(el => io.observe(el));
+  observeAll();
+
+  /* ---------- Header: siempre visible, sólido al pasar el hero ----------
+     La barra de anuncio se va sola (está en el flujo). El header es sticky,
+     así que no necesita JS para quedarse: sólo cambia de transparente a sólido. */
+  const head = document.getElementById('head');
+  const onScroll = () => {
+    const past = window.scrollY > window.innerHeight * 0.86;
+    head.classList.toggle('solid', past);
+    head.classList.toggle('text-bone', !past);
+    head.classList.toggle('text-ink', past);
+  };
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- Rotación de anuncios ---------- */
+  const barMsg = document.getElementById('bar-msg');
+  const notices = [
+    'Nuevo — Descubre la colección para gatos <span aria-hidden="true">→</span>',
+    'Envío gratis en pedidos desde 60 € <span aria-hidden="true">→</span>',
+    'Garantía de por vida en herrajes y cierres <span aria-hidden="true">→</span>'
+  ];
+  let ni = 0, barTimer;
+  const showNotice = (i) => {
+    ni = (i + notices.length) % notices.length;
+    barMsg.style.opacity = '0';
+    setTimeout(() => { barMsg.innerHTML = notices[ni]; barMsg.style.opacity = '1'; }, 300);
+  };
+  const autoBar = () => { if (!reduce) barTimer = setInterval(() => showNotice(ni + 1), 5200); };
+  const resetBar = () => { clearInterval(barTimer); autoBar(); };
+  document.getElementById('bar-next').addEventListener('click', () => { showNotice(ni + 1); resetBar(); });
+  document.getElementById('bar-prev').addEventListener('click', () => { showNotice(ni - 1); resetBar(); });
+  autoBar();
+
+  /* ---------- Parallax del hero ---------- */
+  const media = document.querySelector('.hero-media');
+  if (media && !reduce) {
+    let ticking = false;
+    addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = Math.min(window.scrollY, window.innerHeight);
+        media.style.transform = `translate3d(0, ${y * 0.28}px, 0) scale(${1 + y * 0.00012})`;
+        ticking = false;
+      });
+    }, { passive: true });
+  }
+
+  /* ---------- Menú móvil ---------- */
+  const drawer = document.getElementById('drawer');
+  const panel  = document.getElementById('drawer-panel');
+  const burger = document.getElementById('burger');
+  const setDrawer = (open) => {
+    drawer.classList.toggle('invisible', !open);
+    drawer.classList.toggle('opacity-0', !open);
+    panel.classList.toggle('translate-x-full', !open);
+    burger.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('is-locked', open);
+  };
+  burger.addEventListener('click', () => setDrawer(true));
+  drawer.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', () => setDrawer(false)));
+  addEventListener('keydown', e => { if (e.key === 'Escape') setDrawer(false); });
+
+  /* ---------- Catálogo ---------- */
+  const money = n => n.toFixed(2).replace('.', ',') + ' €';
+
+  const products = [
+    {
+      name: 'Collar Ámbar', cat: 'Collares', price: 68, was: 84, rating: 4.9, reviews: 312, tag: 'Best seller',
+      colors: [
+        { n: 'Ámbar',      hex: '#DFC5A9', img: 'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1000&q=80' },
+        { n: 'Carbón',     hex: '#232323', img: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=1000&q=80' },
+        { n: 'Periwinkle', hex: '#CAC5FF', img: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1000&q=80' }
+      ],
+      alt: 'Perro con collar de cuero color ámbar'
+    },
+    {
+      name: 'Correa Sierra', cat: 'Correas', price: 54, was: null, rating: 4.8, reviews: 187, tag: 'Nuevo',
+      colors: [
+        { n: 'Arena',  hex: '#EDE8E2', img: 'https://images.unsplash.com/photo-1477884213360-7e9d7dcc1e48?auto=format&fit=crop&w=1000&q=80' },
+        { n: 'Carbón', hex: '#232323', img: 'https://images.unsplash.com/photo-1568572933382-74d440642117?auto=format&fit=crop&w=1000&q=80' }
+      ],
+      alt: 'Correa de diseño sujeta durante un paseo'
+    },
+    {
+      name: 'Cama Duna', cat: 'Camas', price: 189, was: 219, rating: 5.0, reviews: 96, tag: 'Edición limitada',
+      colors: [
+        { n: 'Hueso', hex: '#EDE8E2', img: 'https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?auto=format&fit=crop&w=1000&q=80' },
+        { n: 'Rosa',  hex: '#F9C0DF', img: 'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&w=1000&q=80' }
+      ],
+      alt: 'Gato descansando sobre una cama de tono hueso'
+    },
+    {
+      name: 'Juguete Nudo', cat: 'Juguetes', price: 26, was: null, rating: 4.7, reviews: 428, tag: null,
+      colors: [
+        { n: 'Rosa',       hex: '#F9C0DF', img: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1000&q=80' },
+        { n: 'Periwinkle', hex: '#CAC5FF', img: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=1000&q=80' }
+      ],
+      alt: 'Perro jugando con un juguete de caucho natural'
+    },
+    {
+      name: 'Arnés Bruma', cat: 'Accesorios', price: 92, was: null, rating: 4.9, reviews: 254, tag: 'Best seller',
+      colors: [
+        { n: 'Niebla', hex: '#E7E5FF', img: 'https://images.unsplash.com/photo-1560807707-8cc77767d783?auto=format&fit=crop&w=1000&q=80' },
+        { n: 'Carbón', hex: '#232323', img: 'https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&w=1000&q=80' }
+      ],
+      alt: 'Perro con arnés acolchado de tono gris'
+    },
+    {
+      name: 'Cuenco Roca', cat: 'Alimentos', price: 44, was: null, rating: 4.8, reviews: 141, tag: null,
+      colors: [
+        { n: 'Crudo',  hex: '#EDE8E2', img: 'https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&fit=crop&w=1000&q=80' },
+        { n: 'Carbón', hex: '#232323', img: 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=1000&q=80' }
+      ],
+      alt: 'Cuenco de cerámica junto a un perro en la cocina'
+    }
+  ];
+
+  const stars = r => {
+    const full = Math.floor(r);
+    return '★'.repeat(full) + '☆'.repeat(5 - full);
+  };
+
+  const card = (p, i) => `
+    <article class="card group snap-start shrink-0 w-[78vw] xs:w-[68vw] sm:w-[46vw] lg:w-[calc((100%-3rem)/3)] xl:w-[calc((100%-4.5rem)/4)]"
+             data-reveal style="--d:${i * 70}ms">
+      <div class="card-media relative overflow-hidden rounded-4xl bg-sand aspect-[4/5] shadow-soft group-hover:shadow-lift transition-shadow duration-700">
+        <img class="img-a absolute inset-0 h-full w-full object-cover" src="${p.colors[0].img}" alt="${p.alt}" loading="lazy" decoding="async">
+        <img class="img-b absolute inset-0 h-full w-full object-cover opacity-0" src="${p.colors[1] ? p.colors[1].img : p.colors[0].img}" alt="" aria-hidden="true" loading="lazy" decoding="async">
+
+        ${p.tag ? `<span class="absolute top-4 left-4 bg-bone/85 backdrop-blur-md rounded-full px-3.5 py-1.5 text-[10px] tracking-[.18em] uppercase text-ink">${p.tag}</span>` : ''}
+
+        <button class="absolute top-4 right-4 grid place-items-center h-9 w-9 rounded-full bg-bone/85 backdrop-blur-md text-ink hover:bg-ink hover:text-bone transition-colors duration-400" aria-label="Añadir ${p.name} a favoritos">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9Z" stroke-linejoin="round"/></svg>
+        </button>
+
+        <div class="quick absolute inset-x-3 bottom-3">
+          <button class="add-to-cart w-full bg-bone text-ink rounded-full py-3.5 text-[12px] font-medium tracking-[.14em] uppercase hover:bg-ink hover:text-bone transition-colors duration-500"
+                  data-i="${i}">
+            Añadir · ${money(p.price)}
+          </button>
+        </div>
+      </div>
+
+      <div class="pt-5">
+        <div class="flex items-start justify-between gap-4">
+          <div class="min-w-0">
+            <p class="text-[11px] tracking-[.2em] uppercase text-stone">${p.cat}</p>
+            <h3 class="mt-1.5 font-display text-xl leading-tight truncate">${p.name}</h3>
+          </div>
+          <div class="text-right shrink-0">
+            <p class="font-medium">${money(p.price)}</p>
+            ${p.was ? `<p class="text-xs text-stone line-through mt-0.5">${money(p.was)}</p>` : ''}
+          </div>
+        </div>
+
+        <div class="mt-3 flex items-center justify-between gap-4">
+          <div class="flex items-center gap-2" role="radiogroup" aria-label="Color de ${p.name}">
+            ${p.colors.map((c, ci) => `
+              <button class="swatch h-4 w-4 rounded-full border border-ink/12" style="background:${c.hex}"
+                      role="radio" aria-checked="${ci === 0}" aria-label="${c.n}" data-img="${c.img}" title="${c.n}"></button>`).join('')}
+          </div>
+          <p class="text-xs text-stone shrink-0">
+            <span class="text-ink tracking-widest" aria-hidden="true">${stars(p.rating)}</span>
+            <span class="ml-1.5">${p.rating.toFixed(1).replace('.', ',')} (${p.reviews})</span>
+          </p>
+        </div>
+      </div>
+    </article>`;
+
+  const rail = document.getElementById('rail');
+  rail.innerHTML = products.map(card).join('');
+  // Espaciador final para que la última tarjeta respire
+  rail.insertAdjacentHTML('beforeend', '<div class="shrink-0 w-1 sm:w-4" aria-hidden="true"></div>');
+  observeAll();
+
+  /* ================= CARRITO =================
+     Estado en memoria. Cada línea es producto+color: el mismo collar en dos
+     colores son dos líneas distintas, como debe ser. */
+  const ENVIO_GRATIS_DESDE = 60;
+  const COSTE_ENVIO = 4.95;
+
+  let cart = [];
+
+  const cartCount = () => cart.reduce((n, l) => n + l.qty, 0);
+  const cartSubtotal = () => cart.reduce((n, l) => n + l.price * l.qty, 0);
+  const cartShipping = () => (cart.length === 0 || cartSubtotal() >= ENVIO_GRATIS_DESDE ? 0 : COSTE_ENVIO);
+  const cartTotal = () => cartSubtotal() + cartShipping();
+
+  const addToCart = (p, color) => {
+    const id = `${p.name}__${color.n}`;
+    const line = cart.find(l => l.id === id);
+    if (line) line.qty++;
+    else cart.push({ id, name: p.name, cat: p.cat, color: color.n, price: p.price, img: color.img, qty: 1 });
+    renderCart();
+  };
+  const changeQty = (id, delta) => {
+    const line = cart.find(l => l.id === id);
+    if (!line) return;
+    line.qty += delta;
+    if (line.qty < 1) cart = cart.filter(l => l.id !== id);
+    renderCart();
+  };
+  const removeLine = (id) => { cart = cart.filter(l => l.id !== id); renderCart(); };
+
+  const $count    = document.getElementById('cart-count');
+  const $titleCnt = document.getElementById('cart-title-count');
+  const $items    = document.getElementById('cart-items');
+  const $empty    = document.getElementById('cart-empty');
+  const $foot     = document.getElementById('cart-foot');
+  const $subtotal = document.getElementById('cart-subtotal');
+  const $ship     = document.getElementById('cart-ship');
+  const $total    = document.getElementById('cart-total');
+  const $gap      = document.getElementById('cart-gap');
+
+  const lineHTML = (l) => `
+    <li class="flex gap-4">
+      <div class="h-24 w-20 shrink-0 rounded-2xl overflow-hidden bg-sand">
+        <img src="${l.img}" alt="" class="h-full w-full object-cover" loading="lazy" decoding="async">
+      </div>
+      <div class="flex-1 min-w-0 flex flex-col">
+        <div class="flex items-start justify-between gap-3">
+          <div class="min-w-0">
+            <p class="text-[10px] tracking-[.2em] uppercase text-stone">${l.cat}</p>
+            <h3 class="font-display font-extrabold text-[15px] leading-tight truncate mt-0.5">${l.name}</h3>
+            <p class="text-xs text-stone mt-1">Color: ${l.color}</p>
+          </div>
+          <button class="cart-remove shrink-0 h-7 w-7 grid place-items-center text-stone hover:text-ink transition-colors" data-id="${l.id}" aria-label="Quitar ${l.name}">
+            <svg width="14" height="14" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </button>
+        </div>
+        <div class="mt-auto pt-3 flex items-center justify-between gap-3">
+          <div class="inline-flex items-center rounded-full border border-ink/15">
+            <button class="cart-dec h-8 w-8 grid place-items-center hover:bg-sand rounded-l-full transition-colors" data-id="${l.id}" aria-label="Quitar una unidad">
+              <svg width="12" height="12" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14"/></svg>
+            </button>
+            <span class="w-8 text-center text-sm tabular-nums" aria-live="polite">${l.qty}</span>
+            <button class="cart-inc h-8 w-8 grid place-items-center hover:bg-sand rounded-r-full transition-colors" data-id="${l.id}" aria-label="Añadir una unidad">
+              <svg width="12" height="12" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+          <p class="text-sm font-medium tabular-nums">${money(l.price * l.qty)}</p>
+        </div>
+      </div>
+    </li>`;
+
+  const renderCart = () => {
+    const n = cartCount();
+    $count.textContent = n;
+    $count.classList.toggle('scale-0', n === 0);
+    document.getElementById('cart-open').setAttribute('aria-label', n ? `Abrir carrito, ${n} artículos` : 'Abrir carrito');
+    $titleCnt.textContent = n ? `(${n})` : '';
+
+    const vacio = cart.length === 0;
+    $empty.classList.toggle('hidden', !vacio);
+    $items.classList.toggle('hidden', vacio);
+    $foot.classList.toggle('hidden', vacio);
+    if (vacio) return;
+
+    $items.innerHTML = cart.map(lineHTML).join('');
+    $subtotal.textContent = money(cartSubtotal());
+    const envio = cartShipping();
+    $ship.textContent = envio === 0 ? 'Gratis' : money(envio);
+    $ship.classList.toggle('text-ink', envio === 0);
+    $total.textContent = money(cartTotal());
+
+    const falta = ENVIO_GRATIS_DESDE - cartSubtotal();
+    $gap.classList.toggle('hidden', falta <= 0);
+    if (falta > 0) $gap.textContent = `Te faltan ${money(falta)} para el envío gratis.`;
+  };
+
+  /* ---------- Abrir / cerrar ---------- */
+  const $cart = document.getElementById('cart');
+  const $cartPanel = document.getElementById('cart-panel');
+  const setCart = (open) => {
+    $cart.classList.toggle('invisible', !open);
+    $cart.classList.toggle('opacity-0', !open);
+    $cartPanel.classList.toggle('translate-x-full', !open);
+    $cart.setAttribute('aria-hidden', String(!open));
+    document.body.classList.toggle('is-locked', open);
+    if (open) $cartPanel.querySelector('[data-cart-close]')?.focus();
+  };
+  document.getElementById('cart-open').addEventListener('click', () => setCart(true));
+  $cart.querySelectorAll('[data-cart-close]').forEach(el => el.addEventListener('click', () => setCart(false)));
+  addEventListener('keydown', e => { if (e.key === 'Escape') setCart(false); });
+
+  /* ---------- Añadir desde la tarjeta (con el color elegido) ---------- */
+  rail.addEventListener('click', e => {
+    const btn = e.target.closest('.add-to-cart');
+    if (!btn) return;
+    const p = products[+btn.dataset.i];
+    const art = btn.closest('.card');
+    const idx = [...art.querySelectorAll('.swatch')].findIndex(s => s.getAttribute('aria-checked') === 'true');
+    addToCart(p, p.colors[idx < 0 ? 0 : idx]);
+    setCart(true);
+  });
+
+  /* ---------- Cantidades y borrado ---------- */
+  $items.addEventListener('click', e => {
+    const inc = e.target.closest('.cart-inc');
+    const dec = e.target.closest('.cart-dec');
+    const rm  = e.target.closest('.cart-remove');
+    if (inc) changeQty(inc.dataset.id, 1);
+    else if (dec) changeQty(dec.dataset.id, -1);
+    else if (rm) removeLine(rm.dataset.id);
+  });
+
+  /* ---------- ÚNICO punto de compra: aquí y sólo aquí sale WhatsApp ---------- */
+  document.getElementById('cart-checkout').addEventListener('click', () => {
+    if (!cart.length) return;
+    const lineas = cart.map((l, i) =>
+      `${i + 1}. ${l.name} — ${l.color}\n   ${l.qty} × ${money(l.price)} = ${money(l.price * l.qty)}`
+    ).join('\n');
+    const envio = cartShipping();
+    const msg =
+      `¡Hola! Quiero hacer este pedido en LAZO:\n\n` +
+      `${lineas}\n\n` +
+      `Subtotal: ${money(cartSubtotal())}\n` +
+      `Envío: ${envio === 0 ? 'Gratis' : money(envio)}\n` +
+      `TOTAL: ${money(cartTotal())}\n\n` +
+      `¿Me confirmáis disponibilidad y tiempo de entrega?`;
+    window.open(waLink(msg), '_blank', 'noopener');
+  });
+
+  renderCart();
+
+  /* ---------- Variantes de color ---------- */
+  rail.addEventListener('click', e => {
+    const sw = e.target.closest('.swatch');
+    if (!sw) return;
+    const group = sw.closest('[role="radiogroup"]');
+    const art   = sw.closest('.card');
+    group.querySelectorAll('.swatch').forEach(s => s.setAttribute('aria-checked', 'false'));
+    sw.setAttribute('aria-checked', 'true');
+    const imgA = art.querySelector('.img-a');
+    imgA.style.opacity = '0';
+    setTimeout(() => { imgA.src = sw.dataset.img; imgA.style.opacity = ''; }, 220);
+  });
+
+  /* ---------- Carrusel ---------- */
+  const prev = document.getElementById('prev');
+  const next = document.getElementById('next');
+  const bar  = document.getElementById('rail-progress');
+  const step = () => (rail.querySelector('.card')?.offsetWidth || 320) + 24;
+
+  prev.addEventListener('click', () => rail.scrollBy({ left: -step(), behavior: reduce ? 'auto' : 'smooth' }));
+  next.addEventListener('click', () => rail.scrollBy({ left:  step(), behavior: reduce ? 'auto' : 'smooth' }));
+
+  const syncRail = () => {
+    const max = rail.scrollWidth - rail.clientWidth;
+    prev.disabled = rail.scrollLeft < 8;
+    next.disabled = rail.scrollLeft > max - 8;
+    const visible = Math.max(0.14, rail.clientWidth / rail.scrollWidth);
+    bar.style.width = (visible * 100) + '%';
+    bar.style.transform = `translateX(${max > 0 ? (rail.scrollLeft / max) * ((1 / visible) - 1) * 100 : 0}%)`;
+  };
+  rail.addEventListener('scroll', syncRail, { passive: true });
+  addEventListener('resize', syncRail);
+  syncRail();
+
+  // Arrastre con ratón en escritorio
+  let down = false, sx = 0, sl = 0;
+  rail.addEventListener('pointerdown', e => {
+    if (e.pointerType !== 'mouse' || e.target.closest('button')) return;
+    down = true; sx = e.clientX; sl = rail.scrollLeft; rail.style.cursor = 'grabbing';
+  });
+  addEventListener('pointerup', () => { down = false; rail.style.cursor = ''; });
+  rail.addEventListener('pointermove', e => {
+    if (!down) return;
+    e.preventDefault();
+    rail.scrollLeft = sl - (e.clientX - sx);
+  });
+
+  /* ---------- Newsletter ---------- */
+  const form = document.getElementById('nl');
+  const msg  = document.getElementById('nl-msg');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const mail = document.getElementById('nl-mail');
+    const ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail.value.trim());
+    if (!ok) { msg.textContent = 'Necesitamos un correo válido para escribirte.'; mail.focus(); return; }
+    msg.textContent = '¡Bienvenido a la familia LAZO! Revisa tu correo.';
+    form.reset();
+  });
+
+  /* ---------- Botones magnéticos (sólo puntero fino) ---------- */
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches && !reduce) {
+    document.querySelectorAll('.btn').forEach(b => {
+      b.addEventListener('pointermove', e => {
+        const r = b.getBoundingClientRect();
+        const x = (e.clientX - r.left - r.width / 2) * 0.14;
+        const y = (e.clientY - r.top - r.height / 2) * 0.24;
+        b.style.transform = `translate(${x}px, ${y - 2}px)`;
+      });
+      b.addEventListener('pointerleave', () => { b.style.transform = ''; });
+    });
+  }
+})();
+</script>
+</body>
+</html>
